@@ -8,7 +8,7 @@ class Banco {
 	private function conectaBD() {
 		$host = 'localhost';
 		$user = 'root';
-		$pass = 'senha';
+		$pass = '';
 		$base = 'verao-2019';
 		$banco = new \mysqli($host, $user, $pass, $base);
 		if (\mysqli_connect_errno()) {
