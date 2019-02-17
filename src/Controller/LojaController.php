@@ -14,8 +14,11 @@ class LojaController extends AbstractController {
 	* @Route("/")
 	*/
 	public function index() {
+		$banco = new Banco();
+		$produtos = $banco->getProdutos();
+
 		return $this->render('loja/index.html.twig', [
-					    
+			'produtos' => $produtos
 		]);
 	}
 

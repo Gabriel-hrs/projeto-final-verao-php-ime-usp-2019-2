@@ -69,6 +69,18 @@ class Banco {
 		return $produto;
 	}
 
+	public function getProdutos() {
+		$strsql = "select * FROM produtos ORDER BY RAND() LIMIT 2";
+		
+		$resultados = $this->getResultsBD($strsql);
+
+		while ($linha = $resultados->fetch_object()) {
+			$produtos[] = $this->fetchProduto($linha);
+		}
+
+		return $produtos;
+	}
+
 	public function getProdutosByCategoria($nome) {
 		$nome = trim($nome);
 		$strsql = "select p.* from produtos as p
