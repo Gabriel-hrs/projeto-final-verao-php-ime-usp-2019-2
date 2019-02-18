@@ -10,7 +10,7 @@ class Banco {
 		$user = 'root';
 		$pass = '';
 		$base = 'verao-2019';
-		$banco = new mysqli($host, $user, $pass, $base);
+		$banco = new \mysqli($host, $user, $pass, $base);
 		if (\mysqli_connect_errno()) {
 			exit("Não foi possível conectar no banco de dados!");
 		}
@@ -71,6 +71,19 @@ class Banco {
 
 	public function getProdutos() {
 		$strsql = "select * FROM produtos ORDER BY RAND() LIMIT 2";
+		
+		$resultados = $this->getResultsBD($strsql);
+
+		while ($linha = $resultados->fetch_object()) {
+			$produtos[] = $this->fetchProduto($linha);
+		}
+
+		return $produtos;
+	}
+
+	public function buscarProdutos() {
+		$procura = $_POST['search'];
+		$strsql = "select * FROM produtos WHERE nome LIKE '$procura' ORDER BY nome ASC";
 		
 		$resultados = $this->getResultsBD($strsql);
 

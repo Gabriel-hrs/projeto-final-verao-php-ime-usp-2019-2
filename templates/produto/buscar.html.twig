@@ -34,7 +34,7 @@
         </li>
       </ul>
       <form method="post" action="/busca" class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Buscar produto" aria-label="Buscar">
+        <input class="form-control mr-sm-2" type="text" name="search" id="search" placeholder="Buscar produto" aria-label="Buscar">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
@@ -44,27 +44,19 @@
 <body>
 <h2>Mostrando resultado para XXXXXXX</h2>
 
-Lista de produtos.... <br />
+  {% for produto in produtos %}
 
-<h3>Nome do Produto</h3>
-<img src="/images/corsa.jpg" width="300">
-<br />
-Descrição do Produto.......
-<br /><br />
+  <h3>{{ produto.nome }}</h3>
+  <img src="/images/{{ produto.imagem }}" width="300">
+  <br />
+  {{ produto.descricao }}
+  <br /><br />
 
-R$ XXXXX,XX
-<br />
-<a href="/produto/1">Ver Detalhes</a>.
+  R$ {{ produto.preco }}
+  <br />
+  <a href="/produto/{{ produto.id }}">Ver Detalhes</a>
 
-<h3>Nome do Produto</h3>
-<img src="/images/corsa.jpg" width="300">
-<br />
-Descrição do Produto.......
-<br /><br />
-
-R$ XXXXX,XX
-<br />
-<a href="/produto/1">Ver Detalhes</a>
+  {% endfor %}
 </body>
 
 </html>
