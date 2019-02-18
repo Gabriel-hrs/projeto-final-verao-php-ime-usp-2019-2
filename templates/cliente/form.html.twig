@@ -52,6 +52,10 @@
 {{ erro }} <br />
 {% endfor %}
 
+{% for sucesso in sucessos %}
+{{ sucesso }} <br />
+{% endfor %}
+
 <form method="post">
 Nome:
 <input type="text" name="nome" value="{{ cliente.nome }}">
